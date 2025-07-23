@@ -81,32 +81,84 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="pt-24 pb-20">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center max-w-4xl mx-auto">
-          <div class="space-y-8">
-            <div class="space-y-6">
-              <h1 class="text-5xl md:text-6xl font-light text-slate-800 leading-tight">
-                AI 驱动的
-                <span class="block mt-2 text-blue-700">智能专利生成</span>
-              </h1>
-              <p class="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                基于先进的大语言模型技术，自动生成符合规范的专利申请文本，让专利申请变得简单高效
-              </p>
+    <section id="home" class="relative overflow-hidden min-h-screen flex items-center bg-gradient-to-br from-stone-50 to-stone-100">
+      <div class="max-w-6xl mx-auto px-6 py-20 w-full">
+        <div class="text-center">
+          <!-- Animated Title -->
+          <div class="mb-8">
+            <h1 class="text-5xl md:text-7xl font-light text-slate-800 leading-tight">
+              <span class="inline-block animate-fade-in-up animation-delay-0">AI 驱动的</span>
+              <br />
+              <span class="bg-gradient-to-r from-blue-700 via-violet-700 to-emerald-700 bg-clip-text text-transparent bg-300% animate-gradient-x inline-block animate-fade-in-up animation-delay-200">
+                智能专利生成
+              </span>
+            </h1>
+          </div>
+          
+          <!-- Animated Description -->
+          <p class="text-xl md:text-2xl text-slate-600 mb-10 max-w-4xl mx-auto leading-relaxed animate-fade-in-up animation-delay-400">
+            基于先进的大语言模型技术，自动生成符合规范的专利申请文本，
+            <br class="hidden md:block" />
+            结合反AI查重技术确保内容原创性，让专利申请变得
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-violet-700 font-medium animate-pulse">
+              简单高效
+            </span>
+          </p>
+          
+          <!-- Animated Buttons -->
+          <div class="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up animation-delay-600 mb-16">
+            <button class="group bg-gradient-to-r from-blue-700 to-violet-700 text-stone-50 px-10 py-4 rounded-xl text-lg font-medium hover:from-blue-800 hover:to-violet-800 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 flex items-center justify-center relative overflow-hidden">
+              <span class="absolute inset-0 bg-gradient-to-r from-stone-50/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+              <span class="relative">开始免费体验</span>
+              <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+            <button class="group border-2 border-stone-300 text-slate-700 px-10 py-4 rounded-xl text-lg font-medium hover:border-blue-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-violet-50 hover:text-blue-700 transition-all duration-300 hover:scale-105">
+              <span class="group-hover:animate-pulse">查看演示</span>
+            </button>
+          </div>
+
+          <!-- Floating Features -->
+          <div class="flex flex-wrap justify-center gap-4 animate-fade-in-up animation-delay-800">
+            <div class="bg-stone-50/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-stone-200 animate-float animation-delay-0">
+              <span class="text-blue-700 font-medium">✨ AI智能生成</span>
             </div>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-              <button class="bg-slate-800 text-stone-50 px-8 py-3 rounded-lg font-medium hover:bg-slate-700 transition-all duration-200 hover:scale-105 flex items-center justify-center group">
-                开始体验
-                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
-              </button>
-              <button class="border border-stone-300 text-slate-700 px-8 py-3 rounded-lg font-medium hover:bg-stone-200 transition-all duration-200 hover:scale-105">
-                了解更多
-              </button>
+            <div class="bg-stone-50/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-stone-200 animate-float animation-delay-200">
+              <span class="text-violet-700 font-medium">🛡️ 反AI查重</span>
+            </div>
+            <div class="bg-stone-50/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-stone-200 animate-float animation-delay-400">
+              <span class="text-emerald-700 font-medium">📄 专利模板</span>
+            </div>
+            <div class="bg-stone-50/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-stone-200 animate-float animation-delay-600">
+              <span class="text-amber-700 font-medium">👥 协作编辑</span>
             </div>
           </div>
+        </div>
+      </div>
+      
+      <!-- Enhanced Background decoration -->
+      <div class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+        <!-- Animated gradient orbs -->
+        <div class="absolute top-20 left-10 w-72 h-72 bg-blue-200/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float-slow"></div>
+        <div class="absolute top-40 right-10 w-72 h-72 bg-violet-200/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float-slow animation-delay-1000"></div>
+        <div class="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-64 h-64 bg-emerald-200/50 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-float-slow animation-delay-2000"></div>
+        
+        <!-- Particle effect -->
+        <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-500 rounded-full animate-ping animation-delay-500"></div>
+        <div class="absolute top-1/3 right-1/4 w-2 h-2 bg-violet-500 rounded-full animate-ping animation-delay-1500"></div>
+        <div class="absolute bottom-1/3 left-1/3 w-2 h-2 bg-emerald-500 rounded-full animate-ping animation-delay-2500"></div>
+        
+        <!-- Geometric shapes -->
+        <div class="absolute top-1/2 left-8 w-16 h-16 border-2 border-blue-300/30 rounded-lg transform rotate-45 animate-spin-slow opacity-30"></div>
+        <div class="absolute top-1/4 right-16 w-12 h-12 border-2 border-violet-300/30 rounded-full animate-bounce opacity-40"></div>
+        <div class="absolute bottom-1/4 right-1/3 w-8 h-8 bg-gradient-to-r from-blue-400/50 to-violet-400/50 rounded transform rotate-45 animate-pulse opacity-50"></div>
+      </div>
+
+      <!-- Scrolling indicator -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="w-6 h-10 border-2 border-slate-400 rounded-full flex justify-center">
+          <div class="w-1 h-3 bg-slate-400 rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </section>
@@ -472,18 +524,8 @@ const toggleMobileMenu = () => {
 </script>
 
 <style scoped>
-/* 确保字体渲染平滑 */
-.font-light {
-  font-weight: 300;
-}
-
-/* 自定义滚动行为 */
-html {
-  scroll-behavior: smooth;
-}
-
-/* 自定义动画 */
-@keyframes fadeInUp {
+/* 动画关键帧定义 */
+@keyframes fade-in-up {
   from {
     opacity: 0;
     transform: translateY(30px);
@@ -494,7 +536,119 @@ html {
   }
 }
 
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  66% {
+    transform: translateY(-10px) translateX(-10px);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 应用动画类 */
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* 背景大小 */
+.bg-300% {
+  background-size: 300% 300%;
+}
+
+/* 动画延迟类 */
+.animation-delay-0 {
+  animation-delay: 0ms;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+
+.animation-delay-800 {
+  animation-delay: 800ms;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1000ms;
+}
+
+.animation-delay-1500 {
+  animation-delay: 1500ms;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2000ms;
+}
+
+.animation-delay-2500 {
+  animation-delay: 2500ms;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+
+/* 确保字体渲染平滑 */
+.font-light {
+  font-weight: 300;
+}
+
+/* 自定义滚动行为 */
+html {
+  scroll-behavior: smooth;
 }
 </style>
