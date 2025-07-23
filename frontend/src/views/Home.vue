@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-stone-100">
+  <div class="min-h-screen bg-neutral-50">
     <!-- Navigation -->
     <nav class="fixed w-full top-0 z-50 bg-stone-50/90 backdrop-blur-sm border-b border-stone-200">
       <div class="max-w-6xl mx-auto px-6">
@@ -81,7 +81,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative overflow-hidden min-h-screen flex items-center bg-gradient-to-br from-stone-50 to-stone-100">
+    <section id="home" class="relative overflow-hidden min-h-screen flex items-center">
       <div class="max-w-6xl mx-auto px-6 py-20 w-full">
         <div class="text-center">
           <!-- Animated Title -->
