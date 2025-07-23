@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
+  <div class="min-h-screen bg-gray-100">
     <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-200">
+    <nav class="fixed w-full top-0 z-50 bg-gray-50/95 backdrop-blur-sm border-b border-gray-300">
       <div class="max-w-6xl mx-auto px-6">
         <div class="flex items-center justify-between h-16">
           <!-- Logo -->
@@ -64,7 +64,7 @@
           leave-from-class="transform scale-100 opacity-100"
           leave-to-class="transform scale-95 opacity-0"
         >
-          <div v-if="isMobileMenuOpen" class="md:hidden py-4 border-t border-gray-200">
+          <div v-if="isMobileMenuOpen" class="md:hidden py-4 border-t border-gray-300">
             <div class="flex flex-col space-y-4">
               <a href="#home" class="text-slate-600 hover:text-slate-800 transition-colors duration-200 text-sm">首页</a>
               <a href="#features" class="text-slate-600 hover:text-slate-800 transition-colors duration-200 text-sm">功能</a>
@@ -121,16 +121,16 @@
 
                      <!-- Floating Features -->
            <div class="flex flex-wrap justify-center gap-4 animate-fade-in-up animation-delay-800">
-             <div class="bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-sm border border-gray-200 animate-float animation-delay-0">
+             <div class="bg-gray-50/90 backdrop-blur-sm rounded-full px-6 py-3 shadow-sm border border-gray-300 animate-float animation-delay-0">
                <span class="text-gray-700 font-medium">✨ AI智能生成</span>
              </div>
-             <div class="bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-sm border border-gray-200 animate-float animation-delay-200">
+             <div class="bg-gray-50/90 backdrop-blur-sm rounded-full px-6 py-3 shadow-sm border border-gray-300 animate-float animation-delay-200">
                <span class="text-gray-700 font-medium">🛡️ 反AI查重</span>
              </div>
-             <div class="bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-sm border border-gray-200 animate-float animation-delay-400">
+             <div class="bg-gray-50/90 backdrop-blur-sm rounded-full px-6 py-3 shadow-sm border border-gray-300 animate-float animation-delay-400">
                <span class="text-gray-700 font-medium">📄 专利模板</span>
              </div>
-             <div class="bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-sm border border-gray-200 animate-float animation-delay-600">
+             <div class="bg-gray-50/90 backdrop-blur-sm rounded-full px-6 py-3 shadow-sm border border-gray-300 animate-float animation-delay-600">
                <span class="text-gray-700 font-medium">👥 协作编辑</span>
              </div>
            </div>
@@ -140,13 +140,13 @@
              <!-- Subtle Background decoration -->
        <div class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
          <!-- Subtle gradient orbs -->
-         <div class="absolute top-20 left-10 w-72 h-72 bg-gray-100/30 rounded-full filter blur-xl opacity-40 animate-float-slow"></div>
-         <div class="absolute top-40 right-10 w-72 h-72 bg-gray-200/20 rounded-full filter blur-xl opacity-30 animate-float-slow animation-delay-1000"></div>
-         <div class="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-64 h-64 bg-white/40 rounded-full filter blur-xl opacity-20 animate-float-slow animation-delay-2000"></div>
+         <div class="absolute top-20 left-10 w-72 h-72 bg-gray-200/40 rounded-full filter blur-xl opacity-30 animate-float-slow"></div>
+         <div class="absolute top-40 right-10 w-72 h-72 bg-gray-300/30 rounded-full filter blur-xl opacity-25 animate-float-slow animation-delay-1000"></div>
+         <div class="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-64 h-64 bg-gray-100/50 rounded-full filter blur-xl opacity-20 animate-float-slow animation-delay-2000"></div>
          
          <!-- Minimal geometric shapes -->
-         <div class="absolute top-1/2 left-8 w-16 h-16 border border-gray-200/20 rounded-lg transform rotate-45 animate-spin-slow opacity-10"></div>
-         <div class="absolute top-1/4 right-16 w-12 h-12 border border-gray-300/15 rounded-full animate-bounce opacity-15"></div>
+         <div class="absolute top-1/2 left-8 w-16 h-16 border border-gray-300/25 rounded-lg transform rotate-45 animate-spin-slow opacity-15"></div>
+         <div class="absolute top-1/4 right-16 w-12 h-12 border border-gray-400/20 rounded-full animate-bounce opacity-20"></div>
        </div>
 
       <!-- Scrolling indicator -->
