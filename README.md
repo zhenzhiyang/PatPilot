@@ -244,7 +244,7 @@ docker-compose up -d
 
 ## 联系方式
 
-- 项目负责人：杨振之
+- 项目负责人：code
 - 邮箱：zhenzhiyang@example.com
 - 项目地址：https://github.com/zhenzhiyang/PatPilot
 

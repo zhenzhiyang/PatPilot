@@ -6,37 +6,37 @@
         <div class="flex items-center justify-between h-16">
           <!-- Logo -->
           <div class="flex items-center space-x-2 cursor-pointer group">
-            <div class="w-8 h-8 bg-slate-800 rounded-md flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-              <svg class="w-4 h-4 text-stone-50" fill="currentColor" viewBox="0 0 20 20">
+            <div class="w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
                 <path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a3 3 0 003 3h2a3 3 0 003-3V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5z" clip-rule="evenodd"/>
               </svg>
             </div>
-            <span class="font-medium text-slate-800">PatPilot</span>
+            <span class="font-medium text-gray-700">PatPilot</span>
           </div>
 
           <!-- Desktop Navigation -->
           <div class="hidden md:flex items-center space-x-8">
-            <a href="#home" class="text-slate-600 hover:text-slate-800 transition-colors duration-200 text-sm">
+            <a href="#home" class="text-gray-600 hover:text-gray-700 transition-colors duration-200 text-sm">
               首页
             </a>
-            <a href="#features" class="text-slate-600 hover:text-slate-800 transition-colors duration-200 text-sm">
+            <a href="#features" class="text-gray-600 hover:text-gray-700 transition-colors duration-200 text-sm">
               功能
             </a>
-            <a href="#pricing" class="text-slate-600 hover:text-slate-800 transition-colors duration-200 text-sm">
+            <a href="#pricing" class="text-gray-600 hover:text-gray-700 transition-colors duration-200 text-sm">
               定价
             </a>
-            <a href="#about" class="text-slate-600 hover:text-slate-800 transition-colors duration-200 text-sm">
+            <a href="#about" class="text-gray-600 hover:text-gray-700 transition-colors duration-200 text-sm">
               关于
             </a>
           </div>
 
           <!-- Auth Buttons -->
           <div class="hidden md:flex items-center space-x-4">
-            <button class="text-slate-600 hover:text-slate-800 transition-colors duration-200 text-sm font-medium">
+            <button class="text-gray-600 hover:text-gray-700 transition-colors duration-200 text-sm font-medium">
               登录
             </button>
-            <button class="bg-slate-800 text-stone-50 px-5 py-2 rounded-lg text-sm font-medium hover:bg-slate-700 transition-all duration-200 hover:scale-105">
+            <button class="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-all duration-200 hover:scale-105">
               开始使用
             </button>
           </div>
@@ -64,15 +64,15 @@
           leave-from-class="transform scale-100 opacity-100"
           leave-to-class="transform scale-95 opacity-0"
         >
-          <div v-if="isMobileMenuOpen" class="md:hidden py-4 border-t border-gray-300">
+                      <div v-if="isMobileMenuOpen" class="md:hidden py-4 border-t border-gray-300">
             <div class="flex flex-col space-y-4">
-              <a href="#home" class="text-slate-600 hover:text-slate-800 transition-colors duration-200 text-sm">首页</a>
-              <a href="#features" class="text-slate-600 hover:text-slate-800 transition-colors duration-200 text-sm">功能</a>
-              <a href="#pricing" class="text-slate-600 hover:text-slate-800 transition-colors duration-200 text-sm">定价</a>
-              <a href="#about" class="text-slate-600 hover:text-slate-800 transition-colors duration-200 text-sm">关于</a>
+              <a href="#home" class="text-gray-600 hover:text-gray-700 transition-colors duration-200 text-sm">首页</a>
+              <a href="#features" class="text-gray-600 hover:text-gray-700 transition-colors duration-200 text-sm">功能</a>
+              <a href="#pricing" class="text-gray-600 hover:text-gray-700 transition-colors duration-200 text-sm">定价</a>
+              <a href="#about" class="text-gray-600 hover:text-gray-700 transition-colors duration-200 text-sm">关于</a>
               <div class="flex flex-col space-y-3 pt-4">
-                <button class="text-slate-600 text-left text-sm">登录</button>
-                <button class="bg-slate-800 text-stone-50 px-4 py-2 rounded-lg text-sm font-medium">开始使用</button>
+                <button class="text-gray-600 text-left text-sm">登录</button>
+                <button class="bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-medium">开始使用</button>
               </div>
             </div>
           </div>
@@ -86,7 +86,7 @@
         <div class="text-center">
           <!-- Animated Title -->
           <div class="mb-8">
-            <h1 class="text-5xl md:text-7xl font-light text-slate-800 leading-tight">
+            <h1 class="text-5xl md:text-7xl font-light text-gray-700 leading-tight">
               <span class="inline-block animate-fade-in-up animation-delay-0">AI 驱动的</span>
               <br />
               <span class="bg-gradient-to-r from-blue-700 via-violet-700 to-emerald-700 bg-clip-text text-transparent bg-300% animate-gradient-x inline-block animate-fade-in-up animation-delay-200">
