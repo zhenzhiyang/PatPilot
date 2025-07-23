@@ -1,3 +1,4 @@
+
 # AI专利生成系统 (PatPilot)
 
 一个基于AI技术的智能专利生成与管理系统，通过大语言模型生成专利文本，并结合多种技术避免AI查重检测。
@@ -243,7 +244,7 @@ docker-compose up -d
 
 ## 联系方式
 
-- 项目负责人：郑志阳
+- 项目负责人：杨振之
 - 邮箱：zhenzhiyang@example.com
 - 项目地址：https://github.com/zhenzhiyang/PatPilot
 
