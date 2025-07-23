@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
+import Auth from '@/views/Auth.vue'
 import Login from '@/views/Login.vue'
 import Dashboard from '@/views/Dashboard.vue'
 import PatentGenerate from '@/views/PatentGenerate.vue'
@@ -11,6 +12,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/auth',
+    name: 'Auth',
+    component: Auth
   },
   {
     path: '/login',
@@ -52,7 +58,7 @@ router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
   
   if (to.meta.requiresAuth && !token) {
-    next('/login')
+    next('/auth')
   } else {
     next()
   }

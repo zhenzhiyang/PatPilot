@@ -33,10 +33,16 @@
 
           <!-- Auth Buttons -->
           <div class="hidden md:flex items-center space-x-4">
-            <button class="text-gray-600 hover:text-gray-700 transition-colors duration-200 text-sm font-medium">
+            <button 
+              @click="$router.push('/auth')"
+              class="text-gray-600 hover:text-gray-700 transition-colors duration-200 text-sm font-medium"
+            >
               登录
             </button>
-            <button class="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-all duration-200 hover:scale-105">
+            <button 
+              @click="$router.push('/auth')"
+              class="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-all duration-200 hover:scale-105"
+            >
               开始使用
             </button>
           </div>
@@ -71,8 +77,18 @@
               <a href="#pricing" class="text-gray-600 hover:text-gray-700 transition-colors duration-200 text-sm">定价</a>
               <a href="#about" class="text-gray-600 hover:text-gray-700 transition-colors duration-200 text-sm">关于</a>
               <div class="flex flex-col space-y-3 pt-4">
-                <button class="text-gray-600 text-left text-sm">登录</button>
-                <button class="bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-medium">开始使用</button>
+                <button 
+                  @click="$router.push('/auth')"
+                  class="text-gray-600 text-left text-sm"
+                >
+                  登录
+                </button>
+                <button 
+                  @click="$router.push('/auth')"
+                  class="bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-medium"
+                >
+                  开始使用
+                </button>
               </div>
             </div>
           </div>
@@ -107,7 +123,10 @@
           
           <!-- Animated Buttons -->
           <div class="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up animation-delay-600 mb-16">
-            <button class="group bg-gradient-to-r from-blue-700 to-violet-700 text-stone-50 px-10 py-4 rounded-xl text-lg font-medium hover:from-blue-800 hover:to-violet-800 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 flex items-center justify-center relative overflow-hidden">
+            <button 
+              @click="$router.push('/auth')"
+              class="group bg-gradient-to-r from-blue-700 to-violet-700 text-stone-50 px-10 py-4 rounded-xl text-lg font-medium hover:from-blue-800 hover:to-violet-800 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 flex items-center justify-center relative overflow-hidden"
+            >
               <span class="absolute inset-0 bg-gradient-to-r from-stone-50/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
               <span class="relative">开始免费体验</span>
               <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
