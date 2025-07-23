@@ -1,160 +1,216 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+  <div class="min-h-screen bg-neutral-50">
     <!-- Navigation -->
-    <nav class="relative z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/60 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-4">
-          <div class="flex items-center space-x-2">
-            <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
-              <el-icon class="w-6 h-6 text-white"><Document /></el-icon>
+    <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-neutral-100">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <div class="flex items-center space-x-2 cursor-pointer group">
+            <div class="w-8 h-8 bg-neutral-900 rounded-md flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                <path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a3 3 0 003 3h2a3 3 0 003-3V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5z" clip-rule="evenodd"/>
+              </svg>
             </div>
-            <span class="text-2xl font-bold text-gray-800">PatPilot</span>
+            <span class="font-medium text-neutral-900">PatPilot</span>
           </div>
-          
+
+          <!-- Desktop Navigation -->
           <div class="hidden md:flex items-center space-x-8">
-            <a href="#home" class="text-gray-600 hover:text-gray-900 transition-colors font-medium">首页</a>
-            <a href="#features" class="text-gray-600 hover:text-gray-900 transition-colors font-medium">功能特色</a>
-            <a href="#pricing" class="text-gray-600 hover:text-gray-900 transition-colors font-medium">定价</a>
-            <a href="#solutions" class="text-gray-600 hover:text-gray-900 transition-colors font-medium">解决方案</a>
-            <a href="#about" class="text-gray-600 hover:text-gray-900 transition-colors font-medium">关于我们</a>
-            <div class="flex items-center space-x-3 ml-8">
-              <button 
-                class="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg transition-all font-medium"
-                @click="$router.push('/login')"
-              >
-                登录
-              </button>
-              <button class="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-6 py-2 rounded-lg transition-all transform hover:scale-105 font-medium shadow-md">
-                注册
-              </button>
-            </div>
+            <a href="#home" class="text-neutral-600 hover:text-neutral-900 transition-colors duration-200 text-sm">
+              首页
+            </a>
+            <a href="#features" class="text-neutral-600 hover:text-neutral-900 transition-colors duration-200 text-sm">
+              功能
+            </a>
+            <a href="#pricing" class="text-neutral-600 hover:text-neutral-900 transition-colors duration-200 text-sm">
+              定价
+            </a>
+            <a href="#about" class="text-neutral-600 hover:text-neutral-900 transition-colors duration-200 text-sm">
+              关于
+            </a>
           </div>
 
-          <button 
-            class="md:hidden text-gray-700"
-            @click="toggleMobileMenu"
-          >
-            <el-icon class="w-6 h-6">
-              <component :is="isMenuOpen ? 'Close' : 'Menu'" />
-            </el-icon>
-          </button>
-        </div>
-      </div>
-
-      <!-- Mobile menu -->
-      <div v-if="isMenuOpen" class="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md border-b border-gray-200/60 shadow-lg">
-        <div class="px-4 py-6 space-y-4">
-          <a href="#home" class="block text-gray-600 hover:text-gray-900 font-medium">首页</a>
-          <a href="#features" class="block text-gray-600 hover:text-gray-900 font-medium">功能特色</a>
-          <a href="#pricing" class="block text-gray-600 hover:text-gray-900 font-medium">定价</a>
-          <a href="#solutions" class="block text-gray-600 hover:text-gray-900 font-medium">解决方案</a>
-          <a href="#about" class="block text-gray-600 hover:text-gray-900 font-medium">关于我们</a>
-          <div class="space-y-2 pt-4 border-t border-gray-200">
-            <button 
-              class="w-full text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg font-medium"
-              @click="$router.push('/login')"
-            >
+          <!-- Auth Buttons -->
+          <div class="hidden md:flex items-center space-x-4">
+            <button class="text-neutral-600 hover:text-neutral-900 transition-colors duration-200 text-sm font-medium">
               登录
             </button>
-            <button class="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-lg font-medium">注册</button>
+            <button class="bg-neutral-900 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-neutral-800 transition-all duration-200 hover:scale-105">
+              开始使用
+            </button>
           </div>
+
+          <!-- Mobile Menu Button -->
+          <button 
+            @click="toggleMobileMenu"
+            class="md:hidden p-2 rounded-md hover:bg-neutral-100 transition-colors duration-200"
+          >
+            <svg v-if="!isMobileMenuOpen" class="w-5 h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg v-else class="w-5 h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
         </div>
+
+        <!-- Mobile Menu -->
+        <transition
+          enter-active-class="transition duration-200 ease-out"
+          enter-from-class="transform scale-95 opacity-0"
+          enter-to-class="transform scale-100 opacity-100"
+          leave-active-class="transition duration-75 ease-in"
+          leave-from-class="transform scale-100 opacity-100"
+          leave-to-class="transform scale-95 opacity-0"
+        >
+          <div v-if="isMobileMenuOpen" class="md:hidden py-4 border-t border-neutral-100">
+            <div class="flex flex-col space-y-4">
+              <a href="#home" class="text-neutral-600 hover:text-neutral-900 transition-colors duration-200 text-sm">首页</a>
+              <a href="#features" class="text-neutral-600 hover:text-neutral-900 transition-colors duration-200 text-sm">功能</a>
+              <a href="#pricing" class="text-neutral-600 hover:text-neutral-900 transition-colors duration-200 text-sm">定价</a>
+              <a href="#about" class="text-neutral-600 hover:text-neutral-900 transition-colors duration-200 text-sm">关于</a>
+              <div class="flex flex-col space-y-3 pt-4">
+                <button class="text-neutral-600 text-left text-sm">登录</button>
+                <button class="bg-neutral-900 text-white px-4 py-2 rounded-lg text-sm font-medium">开始使用</button>
+              </div>
+            </div>
+          </div>
+        </transition>
       </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative overflow-hidden py-20 lg:py-32 bg-gradient-to-br from-blue-50 to-cyan-50">
-      <div class="absolute inset-0 bg-gradient-to-r from-blue-100/30 to-cyan-100/30"></div>
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h1 class="text-5xl lg:text-7xl font-bold text-gray-900 mb-6">
-            AI驱动的
-            <span class="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-              专利生成
-            </span>
-            系统
-          </h1>
-          <p class="text-xl lg:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto">
-            结合大语言模型与反查重技术，为您提供高质量、原创性强的专利申请文本生成服务
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button class="group bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all transform hover:scale-105 flex items-center shadow-lg">
-              立即开始
-              <el-icon class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"><ArrowRight /></el-icon>
-            </button>
-            <button class="bg-white hover:bg-gray-50 text-gray-700 px-8 py-4 rounded-xl text-lg font-semibold border border-gray-200 transition-all shadow-md">
-              观看演示
-            </button>
-          </div>
-        </div>
-
-        <!-- Stats -->
-        <div class="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8">
-          <div v-for="(stat, index) in stats" :key="index" class="text-center">
-            <div class="inline-flex items-center justify-center w-12 h-12 bg-white/80 rounded-lg mb-4 shadow-sm border border-gray-100">
-              <el-icon class="w-6 h-6 text-blue-500">
-                <component :is="stat.icon" />
-              </el-icon>
+    <section id="home" class="pt-24 pb-20">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center max-w-4xl mx-auto">
+          <div class="space-y-8">
+            <div class="space-y-6">
+              <h1 class="text-5xl md:text-6xl font-light text-neutral-900 leading-tight">
+                AI 驱动的
+                <span class="block mt-2 text-blue-600">智能专利生成</span>
+              </h1>
+              <p class="text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+                基于先进的大语言模型技术，自动生成符合规范的专利申请文本，让专利申请变得简单高效
+              </p>
             </div>
-            <div class="text-3xl font-bold text-gray-900 mb-2">{{ stat.number }}</div>
-            <div class="text-gray-600">{{ stat.label }}</div>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+              <button class="bg-neutral-900 text-white px-8 py-3 rounded-lg font-medium hover:bg-neutral-800 transition-all duration-200 hover:scale-105 flex items-center justify-center group">
+                开始体验
+                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+              <button class="border border-neutral-200 text-neutral-700 px-8 py-3 rounded-lg font-medium hover:bg-neutral-50 transition-all duration-200 hover:scale-105">
+                了解更多
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-20 bg-slate-800/50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="features" class="py-20 bg-white">
+      <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-white mb-4">核心功能特色</h2>
-          <p class="text-xl text-white/70">强大的AI技术栈，为专利生成提供全方位支撑</p>
+          <h2 class="text-3xl md:text-4xl font-light text-neutral-900 mb-4">
+            核心功能
+          </h2>
+          <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+            简洁高效的专利生成解决方案
+          </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          <div 
-            v-for="(feature, index) in features" 
-            :key="index"
-            :class="[
-              'group p-8 rounded-2xl border border-white/10 transition-all duration-300 hover:border-white/30',
-              activeFeature === index ? 'bg-white/5 border-white/30' : 'bg-white/5'
-            ]"
-            @mouseenter="setActiveFeature(index)"
-          >
-            <div :class="['inline-flex p-4 rounded-xl bg-gradient-to-r mb-6', feature.color]">
-              <el-icon class="w-8 h-8 text-white">
-                <component :is="feature.icon" />
-              </el-icon>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Feature 1 -->
+          <div class="group hover:scale-105 transition-transform duration-300">
+            <div class="bg-white border border-neutral-100 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300">
+              <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors duration-300">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-medium text-neutral-900 mb-4">AI 智能生成</h3>
+              <p class="text-neutral-600 leading-relaxed">
+                基于大语言模型自动生成专业的专利申请文本
+              </p>
             </div>
-            <h3 class="text-2xl font-semibold text-white mb-4">{{ feature.title }}</h3>
-            <p class="text-white/70 text-lg leading-relaxed">{{ feature.description }}</p>
           </div>
-        </div>
 
-        <!-- Technology Stack -->
-        <div class="bg-gradient-to-r from-slate-800/50 to-slate-700/50 rounded-2xl p-8 border border-white/10">
-          <h3 class="text-2xl font-semibold text-white mb-6 text-center">技术架构概览</h3>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="text-center">
-              <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span class="text-white font-bold">FE</span>
+          <!-- Feature 2 -->
+          <div class="group hover:scale-105 transition-transform duration-300">
+            <div class="bg-white border border-neutral-100 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300">
+              <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green-100 transition-colors duration-300">
+                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
               </div>
-              <h4 class="text-lg font-semibold text-white mb-2">前端技术</h4>
-              <p class="text-white/60">Vue 3 + Element Plus + Vite</p>
+              <h3 class="text-xl font-medium text-neutral-900 mb-4">原创保障</h3>
+              <p class="text-neutral-600 leading-relaxed">
+                反AI查重技术确保生成内容的原创性
+              </p>
             </div>
-            <div class="text-center">
-              <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span class="text-white font-bold">BE</span>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="group hover:scale-105 transition-transform duration-300">
+            <div class="bg-white border border-neutral-100 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300">
+              <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-100 transition-colors duration-300">
+                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 0v10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2z"/>
+                </svg>
               </div>
-              <h4 class="text-lg font-semibold text-white mb-2">后端服务</h4>
-              <p class="text-white/60">Spring Boot + MySQL + Redis</p>
+              <h3 class="text-xl font-medium text-neutral-900 mb-4">模板管理</h3>
+              <p class="text-neutral-600 leading-relaxed">
+                多种专利类型模板，支持自定义创建
+              </p>
             </div>
-            <div class="text-center">
-              <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span class="text-white font-bold">AI</span>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="group hover:scale-105 transition-transform duration-300">
+            <div class="bg-white border border-neutral-100 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300">
+              <div class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-orange-100 transition-colors duration-300">
+                <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
               </div>
-              <h4 class="text-lg font-semibold text-white mb-2">AI引擎</h4>
-              <p class="text-white/60">GPT + BERT + 反查重算法</p>
+              <h3 class="text-xl font-medium text-neutral-900 mb-4">协作编辑</h3>
+              <p class="text-neutral-600 leading-relaxed">
+                支持多人协作编辑，实时同步修改内容
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="group hover:scale-105 transition-transform duration-300">
+            <div class="bg-white border border-neutral-100 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300">
+              <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-indigo-100 transition-colors duration-300">
+                <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-medium text-neutral-900 mb-4">智能检索</h3>
+              <p class="text-neutral-600 leading-relaxed">
+                全文检索和语义相似度搜索功能
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="group hover:scale-105 transition-transform duration-300">
+            <div class="bg-white border border-neutral-100 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300">
+              <div class="w-12 h-12 bg-pink-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-pink-100 transition-colors duration-300">
+                <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-medium text-neutral-900 mb-4">文档管理</h3>
+              <p class="text-neutral-600 leading-relaxed">
+                完整的版本管理和多格式导出功能
+              </p>
             </div>
           </div>
         </div>
@@ -162,122 +218,242 @@
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="py-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="pricing" class="py-20 bg-neutral-50">
+      <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-white mb-4">选择适合的方案</h2>
-          <p class="text-xl text-white/70">灵活的定价模式，满足不同规模的需求</p>
+          <h2 class="text-3xl md:text-4xl font-light text-neutral-900 mb-4">
+            简单透明的定价
+          </h2>
+          <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+            选择适合您需求的方案
+          </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div 
-            v-for="(plan, index) in pricingPlans" 
-            :key="index"
-            :class="[
-              'relative p-8 rounded-2xl border transition-all duration-300',
-              plan.popular 
-                ? 'border-blue-500 bg-gradient-to-b from-blue-500/10 to-cyan-500/10 scale-105' 
-                : 'border-white/20 bg-white/5 hover:border-white/30'
-            ]"
-          >
-            <div v-if="plan.popular" class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-              <span class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-1 rounded-full text-sm font-semibold flex items-center">
-                <el-icon class="w-4 h-4 mr-1"><Star /></el-icon>
-                最受欢迎
-              </span>
-            </div>
-            
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <!-- Basic Plan -->
+          <div class="bg-white rounded-2xl p-8 border border-neutral-100 hover:shadow-lg transition-shadow duration-300">
             <div class="text-center mb-8">
-              <h3 class="text-2xl font-semibold text-white mb-2">{{ plan.name }}</h3>
-              <div class="text-4xl font-bold text-white mb-2">{{ plan.price }}</div>
-              <p class="text-white/60">{{ plan.description }}</p>
+              <h3 class="text-xl font-medium text-neutral-900 mb-2">基础版</h3>
+              <div class="text-3xl font-light text-neutral-900 mb-2">
+                ¥99
+                <span class="text-base font-normal text-neutral-600">/月</span>
+              </div>
+              <p class="text-neutral-600">适合个人用户</p>
             </div>
-
             <ul class="space-y-4 mb-8">
-              <li v-for="(feature, featureIndex) in plan.features" :key="featureIndex" class="flex items-center text-white/80">
-                <el-icon class="w-5 h-5 text-green-400 mr-3 flex-shrink-0"><Check /></el-icon>
-                {{ feature }}
+              <li class="flex items-center text-neutral-700">
+                <svg class="w-4 h-4 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                10篇专利/月
+              </li>
+              <li class="flex items-center text-neutral-700">
+                <svg class="w-4 h-4 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                基础模板库
+              </li>
+              <li class="flex items-center text-neutral-700">
+                <svg class="w-4 h-4 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                邮件支持
               </li>
             </ul>
+            <button class="w-full bg-neutral-100 text-neutral-900 py-3 rounded-lg font-medium hover:bg-neutral-200 transition-colors duration-200">
+              选择基础版
+            </button>
+          </div>
 
-            <button 
-              :class="[
-                'w-full py-3 rounded-lg font-semibold transition-all',
-                plan.popular
-                  ? 'bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white'
-                  : 'bg-white/10 hover:bg-white/20 text-white border border-white/20'
-              ]"
-            >
-              {{ plan.buttonText }}
+          <!-- Pro Plan -->
+          <div class="bg-white rounded-2xl p-8 border-2 border-blue-200 hover:shadow-lg transition-shadow duration-300 relative">
+            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+              <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">推荐</span>
+            </div>
+            <div class="text-center mb-8">
+              <h3 class="text-xl font-medium text-neutral-900 mb-2">专业版</h3>
+              <div class="text-3xl font-light text-neutral-900 mb-2">
+                ¥299
+                <span class="text-base font-normal text-neutral-600">/月</span>
+              </div>
+              <p class="text-neutral-600">适合专业用户</p>
+            </div>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center text-neutral-700">
+                <svg class="w-4 h-4 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                50篇专利/月
+              </li>
+              <li class="flex items-center text-neutral-700">
+                <svg class="w-4 h-4 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                高级模板 + 自定义
+              </li>
+              <li class="flex items-center text-neutral-700">
+                <svg class="w-4 h-4 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                协作功能
+              </li>
+              <li class="flex items-center text-neutral-700">
+                <svg class="w-4 h-4 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                优先支持
+              </li>
+            </ul>
+            <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200">
+              选择专业版
+            </button>
+          </div>
+
+          <!-- Enterprise Plan -->
+          <div class="bg-white rounded-2xl p-8 border border-neutral-100 hover:shadow-lg transition-shadow duration-300">
+            <div class="text-center mb-8">
+              <h3 class="text-xl font-medium text-neutral-900 mb-2">企业版</h3>
+              <div class="text-3xl font-light text-neutral-900 mb-2">
+                定制
+                <span class="text-base font-normal text-neutral-600">报价</span>
+              </div>
+              <p class="text-neutral-600">适合企业团队</p>
+            </div>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center text-neutral-700">
+                <svg class="w-4 h-4 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                无限专利生成
+              </li>
+              <li class="flex items-center text-neutral-700">
+                <svg class="w-4 h-4 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                私有化部署
+              </li>
+              <li class="flex items-center text-neutral-700">
+                <svg class="w-4 h-4 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                专属客户经理
+              </li>
+            </ul>
+            <button class="w-full bg-neutral-900 text-white py-3 rounded-lg font-medium hover:bg-neutral-800 transition-colors duration-200">
+              联系销售
             </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-blue-600/20 to-cyan-600/20">
-      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl font-bold text-white mb-6">准备开始您的专利生成之旅？</h2>
-        <p class="text-xl text-white/80 mb-8">
-          加入我们，体验AI驱动的专利生成服务，让创新想法快速转化为专利申请
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button class="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all transform hover:scale-105">
-            免费试用
-          </button>
-          <button class="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl text-lg font-semibold border border-white/20 transition-all">
-            联系我们
-          </button>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-light text-neutral-900 mb-4">
+            关于 PatPilot
+          </h2>
+          <p class="text-lg text-neutral-600 max-w-3xl mx-auto leading-relaxed">
+            PatPilot 是一个基于AI技术的智能专利生成与管理系统，通过大语言模型生成专利文本，
+            并结合先进的反查重技术确保内容原创性。我们致力于让专利申请变得更加简单、高效、智能。
+          </p>
+        </div>
+
+        <div class="bg-neutral-50 rounded-3xl p-12">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+              <h3 class="text-2xl font-light text-neutral-900">我们的优势</h3>
+              <div class="space-y-6">
+                <div class="flex items-start space-x-4">
+                  <div class="w-2 h-2 bg-blue-600 rounded-full mt-3"></div>
+                  <div>
+                    <h4 class="font-medium text-neutral-900 mb-2">技术领先</h4>
+                    <p class="text-neutral-600">采用最新的GPT等大语言模型技术</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                  <div class="w-2 h-2 bg-green-600 rounded-full mt-3"></div>
+                  <div>
+                    <h4 class="font-medium text-neutral-900 mb-2">原创保证</h4>
+                    <p class="text-neutral-600">多层次反AI查重技术确保内容原创性</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                  <div class="w-2 h-2 bg-purple-600 rounded-full mt-3"></div>
+                  <div>
+                    <h4 class="font-medium text-neutral-900 mb-2">专业服务</h4>
+                    <p class="text-neutral-600">专业团队提供全方位技术支持</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl p-8 text-center">
+              <div class="space-y-6">
+                <div>
+                  <div class="text-3xl font-light text-neutral-900">15周</div>
+                  <div class="text-neutral-600">开发周期</div>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                  <div>
+                    <div class="text-2xl font-medium text-blue-600">8</div>
+                    <div class="text-sm text-neutral-600">开发阶段</div>
+                  </div>
+                  <div>
+                    <div class="text-2xl font-medium text-green-600">2</div>
+                    <div class="text-sm text-neutral-600">核心开发者</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-white/10 py-12">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer class="bg-neutral-900 text-white py-12">
+      <div class="max-w-6xl mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div class="flex items-center space-x-2 mb-4">
-              <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-md flex items-center justify-center">
-                <el-icon class="w-5 h-5 text-white"><Document /></el-icon>
+              <div class="w-8 h-8 bg-white rounded-md flex items-center justify-center">
+                <svg class="w-4 h-4 text-neutral-900" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                  <path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a3 3 0 003 3h2a3 3 0 003-3V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5z" clip-rule="evenodd"/>
+                </svg>
               </div>
-              <span class="text-xl font-bold text-white">PatPilot</span>
+              <span class="font-medium">PatPilot</span>
             </div>
-            <p class="text-white/60">
-              AI专利生成系统，让创新想法快速转化为专利申请
+            <p class="text-neutral-400 text-sm">
+              AI驱动的智能专利生成与管理系统
             </p>
           </div>
-          
           <div>
-            <h3 class="text-white font-semibold mb-4">产品</h3>
-            <ul class="space-y-2 text-white/60">
+            <h4 class="font-medium mb-4">产品</h4>
+            <ul class="space-y-2 text-neutral-400 text-sm">
               <li><a href="#" class="hover:text-white transition-colors">功能特色</a></li>
-              <li><a href="#" class="hover:text-white transition-colors">价格方案</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">定价方案</a></li>
               <li><a href="#" class="hover:text-white transition-colors">API文档</a></li>
             </ul>
           </div>
-          
           <div>
-            <h3 class="text-white font-semibold mb-4">支持</h3>
-            <ul class="space-y-2 text-white/60">
+            <h4 class="font-medium mb-4">支持</h4>
+            <ul class="space-y-2 text-neutral-400 text-sm">
               <li><a href="#" class="hover:text-white transition-colors">帮助中心</a></li>
-              <li><a href="#" class="hover:text-white transition-colors">用户指南</a></li>
               <li><a href="#" class="hover:text-white transition-colors">联系我们</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">技术支持</a></li>
             </ul>
           </div>
-          
           <div>
-            <h3 class="text-white font-semibold mb-4">公司</h3>
-            <ul class="space-y-2 text-white/60">
-              <li><a href="#" class="hover:text-white transition-colors">关于我们</a></li>
-              <li><a href="#" class="hover:text-white transition-colors">隐私政策</a></li>
-              <li><a href="#" class="hover:text-white transition-colors">服务条款</a></li>
-            </ul>
+            <h4 class="font-medium mb-4">联系方式</h4>
+            <div class="text-neutral-400 text-sm space-y-2">
+              <p>邮箱：hello@patpilot.com</p>
+              <p>项目：github.com/zhenzhiyang/PatPilot</p>
+            </div>
           </div>
         </div>
-        
-        <div class="border-t border-white/10 mt-12 pt-8 text-center text-white/60">
+        <div class="border-t border-neutral-800 mt-12 pt-8 text-center text-neutral-400 text-sm">
           <p>&copy; 2024 PatPilot. All rights reserved.</p>
         </div>
       </div>
@@ -285,162 +461,40 @@
   </div>
 </template>
 
-<script>
-import { ref, onMounted, onUnmounted } from 'vue'
-import { 
-  Document, 
-  Menu, 
-  Close, 
-  ArrowRight, 
-  Files, 
-  Lock, 
-  User, 
-  TrendCharts, 
-  Cpu,
-  Search, 
-  Star, 
-  Check 
-} from '@element-plus/icons-vue'
+<script setup>
+import { ref } from 'vue'
 
-export default {
-  name: 'Home',
-  components: {
-    Document,
-    Menu,
-    Close,
-    ArrowRight,
-    Files,
-    Lock,
-    User,
-    TrendCharts,
-    Cpu,
-    Search,
-    Star,
-    Check
-  },
-  setup() {
-    const isMenuOpen = ref(false)
-    const activeFeature = ref(0)
-    let featureInterval = null
+const isMobileMenuOpen = ref(false)
 
-    const toggleMobileMenu = () => {
-      isMenuOpen.value = !isMenuOpen.value
-    }
-
-    const setActiveFeature = (index) => {
-      activeFeature.value = index
-    }
-
-    const features = ref([
-      {
-        icon: 'Cpu',
-        title: "AI智能生成",
-        description: "基于大语言模型的专利文本智能生成，支持多种专利类型",
-        color: "from-blue-500 to-cyan-500"
-      },
-      {
-        icon: 'Lock',
-        title: "反查重技术",
-        description: "多层次改写策略，确保生成内容的原创性和独特性",
-        color: "from-purple-500 to-pink-500"
-      },
-      {
-        icon: 'Search',
-        title: "智能检索",
-        description: "全文检索和语义相似度搜索，快速定位相关专利",
-        color: "from-green-500 to-emerald-500"
-      },
-      {
-        icon: 'Files',
-        title: "文档管理",
-        description: "版本控制、协作编辑，支持多种格式导出",
-        color: "from-orange-500 to-red-500"
-      }
-    ])
-
-    const stats = ref([
-      { number: "10,000+", label: "生成专利数量", icon: "Files" },
-      { number: "95%", label: "原创度保证", icon: "Lock" },
-      { number: "500+", label: "活跃用户", icon: "User" },
-      { number: "99.9%", label: "系统稳定性", icon: "TrendCharts" }
-    ])
-
-    const pricingPlans = ref([
-      {
-        name: "基础版",
-        price: "免费",
-        description: "个人用户和小型团队",
-        features: ["每月5次生成", "基础模板", "标准查重", "邮件支持"],
-        buttonText: "开始使用",
-        popular: false
-      },
-      {
-        name: "专业版",
-        price: "¥299/月",
-        description: "中小企业专业需求",
-        features: ["无限次生成", "高级模板", "智能查重", "优先支持", "API访问"],
-        buttonText: "立即购买",
-        popular: true
-      },
-      {
-        name: "企业版",
-        price: "定制价格",
-        description: "大型企业解决方案",
-        features: ["企业定制", "私有部署", "专属客服", "培训服务", "SLA保障"],
-        buttonText: "联系销售",
-        popular: false
-      }
-    ])
-
-    onMounted(() => {
-      featureInterval = setInterval(() => {
-        activeFeature.value = (activeFeature.value + 1) % 4
-      }, 3000)
-    })
-
-    onUnmounted(() => {
-      if (featureInterval) {
-        clearInterval(featureInterval)
-      }
-    })
-
-    return {
-      isMenuOpen,
-      activeFeature,
-      toggleMobileMenu,
-      setActiveFeature,
-      features,
-      stats,
-      pricingPlans
-    }
-  }
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
 </script>
 
 <style scoped>
-/* Tailwind CSS will handle most styling */
-.group:hover .group-hover\:translate-x-1 {
-  transform: translateX(0.25rem);
+/* 确保字体渲染平滑 */
+.font-light {
+  font-weight: 300;
 }
 
-.bg-clip-text {
-  -webkit-background-clip: text;
-  background-clip: text;
+/* 自定义滚动行为 */
+html {
+  scroll-behavior: smooth;
 }
 
-.text-transparent {
-  color: transparent;
-}
-
-/* Custom gradients and effects */
-.backdrop-blur-md {
-  backdrop-filter: blur(12px);
-}
-
-/* Ensure proper hover states */
-@media (hover: hover) {
-  .hover\:scale-105:hover {
-    transform: scale(1.05);
+/* 自定义动画 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
 }
 </style>
