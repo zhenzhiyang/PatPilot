@@ -10,7 +10,13 @@
       "Bash(vue create:*)",
       "Bash(npm run dev:*)",
       "Bash(npx tailwindcss:*)",
-      "Bash(npm uninstall:*)"
+      "Bash(npm uninstall:*)",
+      "Bash(mvn -version)",
+      "Bash(node --version)",
+      "Bash(mysql:*)",
+      "Bash(sudo apt update)",
+      "Bash(curl:*)",
+      "Bash(pkill:*)"
     ],
     "deny": []
   }

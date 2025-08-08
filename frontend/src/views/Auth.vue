@@ -489,7 +489,7 @@ const handleSubmit = async () => {
     console.log('一键登录注册成功', formData.value)
     
     // 成功后跳转到控制台页面
-    router.push('/dashboard')
+    router.push('/patent/generate')
     
   } catch (error) {
     console.error('一键登录注册失败:', error)

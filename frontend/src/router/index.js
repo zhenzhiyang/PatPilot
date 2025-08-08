@@ -2,10 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
 import Auth from '@/views/Auth.vue'
 import Login from '@/views/Login.vue'
-import Dashboard from '@/views/Dashboard.vue'
-import PatentGenerate from '@/views/PatentGenerate.vue'
-import PatentManage from '@/views/PatentManage.vue'
-import TemplateManage from '@/views/TemplateManage.vue'
 
 const routes = [
   {
@@ -24,27 +20,9 @@ const routes = [
     component: Login
   },
   {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: Dashboard,
-    meta: { requiresAuth: true }
-  },
-  {
     path: '/patent/generate',
     name: 'PatentGenerate',
-    component: PatentGenerate,
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/patent/manage',
-    name: 'PatentManage',
-    component: PatentManage,
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/template/manage',
-    name: 'TemplateManage',
-    component: TemplateManage,
+    component: () => import('@/views/PatentGenerate.vue'),
     meta: { requiresAuth: true }
   }
 ]

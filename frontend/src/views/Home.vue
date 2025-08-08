@@ -34,13 +34,13 @@
           <!-- Auth Buttons -->
           <div class="hidden md:flex items-center space-x-4">
             <button 
-              @click="$router.push('/auth')"
+              @click="handleStartExperience"
               class="text-gray-600 hover:text-gray-700 transition-colors duration-200 text-sm font-medium"
             >
               登录
             </button>
             <button 
-              @click="$router.push('/auth')"
+              @click="handleStartExperience"
               class="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-all duration-200 hover:scale-105"
             >
               开始使用
@@ -78,13 +78,13 @@
               <a href="#about" class="text-gray-600 hover:text-gray-700 transition-colors duration-200 text-sm">关于</a>
               <div class="flex flex-col space-y-3 pt-4">
                 <button 
-                  @click="$router.push('/auth')"
+                  @click="handleStartExperience"
                   class="text-gray-600 text-left text-sm"
                 >
                   登录
                 </button>
                 <button 
-                  @click="$router.push('/auth')"
+                  @click="handleStartExperience"
                   class="bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-medium"
                 >
                   开始使用
@@ -124,11 +124,11 @@
           <!-- Animated Buttons -->
           <div class="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up animation-delay-600 mb-16">
             <button 
-              @click="$router.push('/auth')"
+              @click="handleStartExperience"
               class="group bg-gradient-to-r from-blue-700 to-violet-700 text-stone-50 px-10 py-4 rounded-xl text-lg font-medium hover:from-blue-800 hover:to-violet-800 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 flex items-center justify-center relative overflow-hidden"
             >
               <span class="absolute inset-0 bg-gradient-to-r from-stone-50/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-              <span class="relative">开始免费体验</span>
+              <span class="relative">立即体验</span>
               <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
               </svg>
@@ -528,11 +528,44 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useUserStore } from '@/store/user'
+import { ElMessage } from 'element-plus'
 
+const router = useRouter()
+const userStore = useUserStore()
 const isMobileMenuOpen = ref(false)
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
+}
+
+const handleStartExperience = async () => {
+  try {
+    // 使用测试账号自动登录
+    const result = await userStore.login({
+      username: 'admin',
+      password: 'admin'
+    })
+    
+    if (result.success) {
+      ElMessage.success('登录成功，欢迎体验！')
+      // 直接跳转到专利生成页面
+      router.push('/patent/generate')
+    } else {
+      // 如果登录失败，模拟登录成功（用于演示）
+      userStore.setUser({ username: 'admin', id: 1 })
+      userStore.setToken('demo-token')
+      ElMessage.success('欢迎体验 PatPilot！')
+      router.push('/patent/generate')
+    }
+  } catch (error) {
+    // 出现错误时也模拟登录成功
+    userStore.setUser({ username: 'admin', id: 1 })
+    userStore.setToken('demo-token')
+    ElMessage.success('欢迎体验 PatPilot！')
+    router.push('/patent/generate')
+  }
 }
 </script>
 

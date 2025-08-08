@@ -85,7 +85,7 @@ export default {
         
         if (result.success) {
           ElMessage.success('登录成功')
-          router.push('/dashboard')
+          router.push('/patent/generate')
         } else {
           ElMessage.error(result.message || '登录失败')
         }

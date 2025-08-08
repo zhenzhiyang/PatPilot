@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专利管理系统</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f6fa;
+            color: #2f3640;
+            line-height: 1.6;
+        }
+        
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* 左侧导航栏 - 更简约 */
+        .sidebar {
+            width: 260px;
+            background: #ffffff;
+            border-right: 1px solid #e1e5e9;
+            overflow-y: auto;
+        }
+        
+        .logo {
+            padding: 20px;
+            border-bottom: 1px solid #e1e5e9;
+            text-align: center;
+        }
+        
+        .logo h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2f3640;
+        }
+        
+        .nav-section {
+            padding: 8px 0;
+        }
+        
+        .nav-title {
+            padding: 12px 20px 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #8395a7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            color: #57606f;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .nav-item:hover {
+            background: #f1f2f6;
+            color: #2f3640;
+        }
+        
+        .nav-item.active {
+            background: #e8f4fd;
+            color: #0066cc;
+            border-left-color: #0066cc;
+        }
+        
+        .nav-item .icon {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        /* 主内容区域 */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+        }
+        
+        .header {
+            padding: 20px 32px;
+            border-bottom: 1px solid #e1e5e9;
+            background: #ffffff;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2f3640;
+        }
+        
+        .breadcrumb {
+            color: #8395a7;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        
+        .progress-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 6px;
+            background: #e1e5e9;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #0066cc;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            font-size: 14px;
+            color: #57606f;
+            font-weight: 500;
+        }
+        
+        /* AI生成区域 - 重新设计 */
+        .ai-generation-area {
+            flex: 1;
+            padding: 32px;
+            overflow-y: auto;
+        }
+        
+        .generation-card {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e1e5e9;
+            margin-bottom: 24px;
+            overflow: hidden;
+            transition: box-shadow 0.2s ease;
+        }
+        
+        .generation-card:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .card-header {
+            padding: 20px 24px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e1e5e9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2f3640;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .ai-generate-btn {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .ai-generate-btn:hover {
+            background: #0052a3;
+            transform: translateY(-1px);
+        }
+        
+        .card-content {
+            padding: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2f3640;
+            font-size: 14px;
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            background: #ffffff;
+            resize: vertical;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+        }
+        
+        .ai-suggestions-inline {
+            margin-top: 12px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 3px solid #0066cc;
+        }
+        
+        .suggestion-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #0066cc;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .suggestion-item {
+            background: #ffffff;
+            border: 1px solid #e1e5e9;
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 13px;
+            color: #57606f;
+        }
+        
+        .suggestion-item:hover {
+            border-color: #0066cc;
+            background: #f8f9ff;
+        }
+        
+        .suggestion-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* 右侧编辑区域 */
+        .editor-panel {
+            width: 360px;
+            background: #ffffff;
+            border-left: 1px solid #e1e5e9;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .editor-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #e1e5e9;
+        }
+        
+        .editor-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2f3640;
+            margin-bottom: 4px;
+        }
+        
+        .editor-subtitle {
+            font-size: 13px;
+            color: #8395a7;
+        }
+        
+        .editor-tabs {
+            display: flex;
+            border-bottom: 1px solid #e1e5e9;
+            background: #f8f9fa;
+        }
+        
+        .editor-tab {
+            flex: 1;
+            padding: 12px 16px;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            color: #57606f;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .editor-tab.active {
+            color: #0066cc;
+            border-bottom-color: #0066cc;
+            background: #ffffff;
+        }
+        
+        .editor-content {
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        .content-section {
+            padding: 20px 24px;
+        }
+        
+        .content-editor {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            min-height: 200px;
+            padding: 16px;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .content-editor:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+        
+        .editor-tools {
+            padding: 20px 24px;
+            border-top: 1px solid #e1e5e9;
+            background: #f8f9fa;
+        }
+        
+        .tool-button {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #57606f;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .tool-button:hover {
+            border-color: #0066cc;
+            color: #0066cc;
+            background: #f8f9ff;
+        }
+        
+        .tool-button.primary {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+        }
+        
+        .tool-button.primary:hover {
+            background: #0052a3;
+        }
+        
+        /* 操作按钮区域 */
+        .actions-bar {
+            padding: 20px 32px;
+            border-top: 1px solid #e1e5e9;
+            background: #f8f9fa;
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid #ddd;
+            background: #ffffff;
+            color: #57606f;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+        
+        .btn-primary {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+        }
+        
+        .btn-primary:hover {
+            background: #0052a3;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+            color: white;
+            border-color: #27ae60;
+        }
+        
+        .btn-success:hover {
+            background: #219a52;
+        }
+        
+        /* 状态指示器 */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            background: #e8f4fd;
+            color: #0066cc;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .editor-panel {
+                width: 320px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+            
+            .editor-panel {
+                width: 100%;
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- 左侧导航栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>专利助手</h1>
+            </div>
+            
+            <nav>
+                <div class="nav-section">
+                    <div class="nav-title">项目管理</div>
+                    <div class="nav-item" @click="setActiveSection('新建专利')">
+                        <span class="icon">+</span>
+                        新建专利
+                    </div>
+                    <div class="nav-item" @click="setActiveSection('历史项目')" 
+                         :class="{ active: activeSection === '历史项目' }">
+                        <span class="icon">📁</span>
+                        历史项目
+                    </div>
+                    <div class="nav-item" @click="setActiveSection('草稿箱')">
+                        <span class="icon">📝</span>
+                        草稿箱
+                    </div>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-title">专利撰写</div>
+                    <div class="nav-item" @click="setActiveSection('基本信息')"
+                         :class="{ active: activeSection === '基本信息' }">
+                        <span class="icon">ℹ️</span>
+                        基本信息
+                    </div>
+                    <div class="nav-item" @click="setActiveSection('技术领域')">
+                        <span class="icon">🔬</span>
+                        技术领域
+                    </div>
+                    <div class="nav-item" @click="setActiveSection('发明内容')">
+                        <span class="icon">💡</span>
+                        发明内容
+                    </div>
+                    <div class="nav-item" @click="setActiveSection('权利要求')">
+                        <span class="icon">⚖️</span>
+                        权利要求书
+                    </div>
+                    <div class="nav-item" @click="setActiveSection('摘要')">
+                        <span class="icon">📋</span>
+                        摘要
+                    </div>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-title">工具</div>
+                    <div class="nav-item" @click="setActiveSection('AI检索')">
+                        <span class="icon">🔍</span>
+                        智能检索
+                    </div>
+                    <div class="nav-item" @click="setActiveSection('查重检测')">
+                        <span class="icon">🔍</span>
+                        查重检测
+                    </div>
+                    <div class="nav-item" @click="setActiveSection('模板库')">
+                        <span class="icon">📋</span>
+                        模板库
+                    </div>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <header class="header">
+                <div class="header-top">
+                    <div>
+                        <h1 class="page-title">{{ currentPageTitle }}</h1>
+                        <div class="breadcrumb">专利撰写 > {{ activeSection }}</div>
+                    </div>
+                    <div class="progress-section">
+                        <div class="progress-bar">
+                            <div class="progress-fill" :style="{ width: progress + '%' }"></div>
+                        </div>
+                        <span class="progress-text">{{ progress }}%</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- AI生成区域 -->
+            <div class="ai-generation-area">
+                <!-- 技术名称 -->
+                <div class="generation-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>🏷️</span>
+                            技术名称
+                        </div>
+                        <button class="ai-generate-btn" @click="generateTechName">
+                            <span>🤖</span>
+                            AI生成
+                        </button>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label class="form-label">技术名称</label>
+                            <input type="text" class="form-input" 
+                                   v-model="formData.techName" 
+                                   @input="updateProgress"
+                                   placeholder="请输入技术名称...">
+                            <div class="ai-suggestions-inline" v-if="showSuggestions.techName">
+                                <div class="suggestion-title">AI建议</div>
+                                <div class="suggestion-item" @click="applySuggestion('techName', '智能音频处理设备')">
+                                    智能音频处理设备
+                                </div>
+                                <div class="suggestion-item" @click="applySuggestion('techName', '外置声响增强装置')">
+                                    外置声响增强装置
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 技术领域 -->
+                <div class="generation-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>🎯</span>
+                            技术领域
+                        </div>
+                        <button class="ai-generate-btn" @click="generateTechField">
+                            <span>🤖</span>
+                            AI生成
+                        </button>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label class="form-label">所属技术领域</label>
+                            <textarea class="form-textarea" 
+                                      v-model="formData.techField"
+                                      @input="updateProgress"
+                                      placeholder="请描述技术所属领域..."></textarea>
+                            <div class="ai-suggestions-inline" v-if="showSuggestions.techField">
+                                <div class="suggestion-title">AI建议</div>
+                                <div class="suggestion-item" @click="applySuggestion('techField', '本发明涉及音频设备技术领域，特别涉及一种外置声响增强设备。')">
+                                    本发明涉及音频设备技术领域，特别涉及一种外置声响增强设备。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 技术背景 -->
+                <div class="generation-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>📚</span>
+                            技术背景
+                        </div>
+                        <button class="ai-generate-btn" @click="generateTechBackground">
+                            <span>🤖</span>
+                            AI生成
+                        </button>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label class="form-label">背景技术及存在问题</label>
+                            <textarea class="form-textarea" 
+                                      v-model="formData.techBackground"
+                                      @input="updateProgress"
+                                      placeholder="请描述现有技术背景及存在的问题..."
+                                      style="min-height: 150px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 技术方案 -->
+                <div class="generation-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>🔧</span>
+                            技术方案
+                        </div>
+                        <button class="ai-generate-btn" @click="generateTechSolution">
+                            <span>🤖</span>
+                            AI生成
+                        </button>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label class="form-label">技术解决方案</label>
+                            <textarea class="form-textarea" 
+                                      v-model="formData.techSolution"
+                                      @input="updateProgress"
+                                      placeholder="请详细描述技术方案..." 
+                                      style="min-height: 200px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 有益效果 -->
+                <div class="generation-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>✨</span>
+                            有益效果
+                        </div>
+                        <button class="ai-generate-btn" @click="generateBeneficialEffect">
+                            <span>🤖</span>
+                            AI生成
+                        </button>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label class="form-label">技术效果说明</label>
+                            <textarea class="form-textarea" 
+                                      v-model="formData.beneficialEffect"
+                                      @input="updateProgress"
+                                      placeholder="请描述本发明的有益效果..."></textarea>
+                        </div>
+                        <div class="status-indicator">
+                            <span>📝</span>
+                            {{ formStatus }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 操作按钮区域 -->
+            <div class="actions-bar">
+                <button class="btn" @click="saveDraft">
+                    <span>💾</span>
+                    保存草稿
+                </button>
+                <button class="btn btn-success" @click="optimizeWithAI">
+                    <span>🤖</span>
+                    AI整体优化
+                </button>
+                <button class="btn btn-primary" @click="nextStep">
+                    <span>➡️</span>
+                    下一步
+                </button>
+            </div>
+        </main>
+        
+        <!-- 右侧内容编辑区 -->
+        <aside class="editor-panel">
+            <div class="editor-header">
+                <div class="editor-title">内容编辑器</div>
+                <div class="editor-subtitle">编辑AI生成的内容</div>
+            </div>
+            
+            <div class="editor-content">
+                <div class="content-section">
+                    <div class="form-group">
+                        <label class="form-label">{{ currentEditingField || '选择左侧内容进行编辑' }}</label>
+                        <textarea class="content-editor" 
+                                  v-model="currentEditContent"
+                                  :placeholder="currentEditingField ? '编辑内容...' : '请先选择左侧要编辑的内容'"
+                                  :disabled="!currentEditingField"
+                                  style="min-height: calc(100vh - 200px);"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editor-tools">
+                <button class="tool-button primary" 
+                        @click="applyCurrentEdit"
+                        :disabled="!currentEditingField || !currentEditContent">
+                    <span>✓</span>
+                    应用到表单
+                </button>
+                <button class="tool-button" 
+                        @click="clearEditor"
+                        :disabled="!currentEditContent">
+                    <span>🗑️</span>
+                    清空内容
+                </button>
+                <button class="tool-button" 
+                        @click="optimizeCurrentText"
+                        :disabled="!currentEditContent">
+                    <span>✨</span>
+                    AI优化
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        const { createApp, ref, computed } = Vue;
+        
+        createApp({
+            setup() {
+                // 响应式数据
+                const activeSection = ref('基本信息');
+                const activeTab = ref('edit');
+                const progress = ref(25);
+                const currentEditContent = ref('');
+                
+                // 显示AI建议的状态
+                const showSuggestions = ref({
+                    techName: false,
+                    techField: false,
+                    techBackground: false,
+                    techSolution: false,
+                    beneficialEffect: false
+                });
+                
+                // 表单数据
+                const formData = ref({
+                    techName: '',
+                    techField: '',
+                    techBackground: '',
+                    techSolution: '',
+                    beneficialEffect: ''
+                });
+                
+                // 编辑历史
+                const editHistory = ref([
+                    {
+                        id: 1,
+                        action: '修改技术名称',
+                        time: '2024-01-15 14:30',
+                        content: '智能音频处理设备'
+                    },
+                    {
+                        id: 2,
+                        action: '优化技术方案',
+                        time: '2024-01-15 14:25',
+                        content: '改进了控制系统的描述'
+                    }
+                ]);
+                
+                // 计算属性
+                const currentPageTitle = computed(() => {
+                    return activeSection.value || '基本信息';
+                });
+                
+                const formStatus = computed(() => {
+                    const filledFields = Object.values(formData.value).filter(val => val.trim()).length;
+                    const totalFields = Object.keys(formData.value).length;
+                    return `已完成 ${filledFields}/${totalFields} 个字段`;
+                });
+                
+                const previewContent = computed(() => {
+                    if (!currentEditContent.value) return '<p>暂无内容</p>';
+                    return `<p>${currentEditContent.value.replace(/\n/g, '</p><p>')}</p>`;
+                });
+                
+                // 方法
+                const setActiveSection = (section) => {
+                    activeSection.value = section;
+                };
+                
+                const updateProgress = () => {
+                    const filledFields = Object.values(formData.value).filter(val => val.trim()).length;
+                    const totalFields = Object.keys(formData.value).length;
+                    progress.value = Math.round((filledFields / totalFields) * 100);
+                };
+                
+                const applySuggestion = (field, suggestion) => {
+                    formData.value[field] = suggestion;
+                    showSuggestions.value[field] = false;
+                    updateProgress();
+                };
+                
+                const generateTechName = () => {
+                    showSuggestions.value.techName = !showSuggestions.value.techName;
+                };
+                
+                const generateTechField = () => {
+                    showSuggestions.value.techField = !showSuggestions.value.techField;
+                };
+                
+                const generateTechBackground = () => {
+                    // 模拟AI生成
+                };
+                
+                const generateTechSolution = () => {
+                    // 模拟AI生成
+                };
+                
+                const generateBeneficialEffect = () => {
+                    // 模拟AI生成
+                };
+                
+                const applyCurrentEdit = () => {
+                    if (!currentEditingField.value) return;
+                    formData.value[currentEditingField.value] = currentEditContent.value;
+                    updateProgress();
+                };
+                
+                const clearEditor = () => {
+                    currentEditContent.value = '';
+                };
+                
+                const optimizeCurrentText = () => {
+                    // 模拟AI优化
+                    if (currentEditContent.value) {
+                        currentEditContent.value = currentEditContent.value + '（已优化）';
+                    }
+                };
+                
+                const saveDraft = () => {
+                    alert('草稿已保存');
+                };
+                
+                const nextStep = () => {
+                    alert('进入下一步');
+                };
+                
+                const optimizeWithAI = () => {
+                    alert('AI正在优化整体内容');
+                };
+                
+                const currentEditingField = ref('');
+                
+                return {
+                    activeSection,
+                    activeTab,
+                    progress,
+                    currentEditContent,
+                    showSuggestions,
+                    formData,
+                    editHistory,
+                    currentPageTitle,
+                    formStatus,
+                    previewContent,
+                    setActiveSection,
+                    updateProgress,
+                    applySuggestion,
+                    generateTechName,
+                    generateTechField,
+                    generateTechBackground,
+                    generateTechSolution,
+                    generateBeneficialEffect,
+                    applyCurrentEdit,
+                    clearEditor,
+                    optimizeCurrentText,
+                    saveDraft,
+                    nextStep,
+                    optimizeWithAI,
+                    currentEditingField
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
+
+
